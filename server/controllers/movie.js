@@ -7,6 +7,7 @@ movieControll.getMovies = async (req, res) => {
             console.error(err);
         });
     res.json(movies);
+    console.log(movies);
 };
 movieControll.createMovie = async (req, res) => {
     const movies = new Movie(req.body);
@@ -15,6 +16,7 @@ movieControll.createMovie = async (req, res) => {
             console.error(err);
         });
     res.json({'status': 'Movie insertada correctamente'});
+    console.log(movies);
 };
 movieControll.getMovie = async (req, res) => {
     const movie = await Movie.find(req.params.id)
@@ -22,6 +24,7 @@ movieControll.getMovie = async (req, res) => {
             console.error(err);
         });
     res.json(movie);
+
 };
 movieControll.updateMovie = async (req,res) => {
     const movie = {
@@ -49,6 +52,27 @@ movieControll.deleteMovie = async (req, res) => {
     await Movie.findByIdAndDelete(req.params.id);
     res.json({status: 'Movie borrada'})
 };
-
+movieControll.addMovie = async (req, res) => {
+    const movies = new Movie({
+        title: req.body.title,
+        year: req.body.year,
+        rated: req.body.rated,
+        runtime: req.body.runtime,
+        countries: req.body.countries,
+        genres: req.body.genres,
+        director: req.body.director,
+        writers: req.body.writers,
+        actors: req.body.actors,
+        plot: req.body.plot,
+        poster: req.body.poster,
+        imdb: req.body.imdb,
+        tomato: req.body.tomato,
+        metacritic: req.body.metacritic,
+        awards: req.body.awards,
+        type: req.body.type
+    });
+    await Movie.add(movies);
+    res.json({status: 'Movie añadida'})
+}
 
 module.exports = movieControll;

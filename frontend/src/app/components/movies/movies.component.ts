@@ -5,6 +5,9 @@ import {Movie} from "../../models/movie";
 
 declare var M: any;
 
+class Employee {
+}
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -16,8 +19,9 @@ export class MoviesComponent implements OnInit {
   myGenre: string;
   myWriter: string;
   myActor: string;
+  private employeeService: any;
 
-  constructor(private movieService: MovieService) { }
+  constructor(public movieService: MovieService) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -25,7 +29,7 @@ export class MoviesComponent implements OnInit {
 
   addCountry() {
     if (this.movieService.selectedMovie.countries[0] === '') {
-      this.movieService.selectedMovie.countries[0] === this.myCountry;
+      this.movieService.selectedMovie.countries[0]= this.myCountry;
     }else {
       this.movieService.selectedMovie.countries.push(this.myCountry);
       this.myCountry = '';
@@ -33,7 +37,7 @@ export class MoviesComponent implements OnInit {
   }
   addGenre() {
     if (this.movieService.selectedMovie.genres[0] === '') {
-      this.movieService.selectedMovie.genres[0] === this.myGenre;
+      this.movieService.selectedMovie.genres[0] = this.myGenre;
     }else {
       this.movieService.selectedMovie.genres.push(this.myGenre);
       this.myGenre = '';
@@ -41,7 +45,7 @@ export class MoviesComponent implements OnInit {
   }
   addWriter() {
     if (this.movieService.selectedMovie.writers[0] === '') {
-      this.movieService.selectedMovie.writers[0] === this.myWriter;
+      this.movieService.selectedMovie.writers[0] = this.myWriter;
     }else {
       this.movieService.selectedMovie.writers.push(this.myWriter);
       this.myWriter = '';
@@ -49,7 +53,7 @@ export class MoviesComponent implements OnInit {
   }
   addActor() {
     if (this.movieService.selectedMovie.actors[0] === '') {
-      this.movieService.selectedMovie.actors[0] === this.myActor;
+      this.movieService.selectedMovie.actors[0] = this.myActor;
     }else {
       this.movieService.selectedMovie.actors.push(this.myActor);
       this.myActor = '';
@@ -63,13 +67,22 @@ export class MoviesComponent implements OnInit {
     }
   }
   addMovie(peli: Movie, form: NgForm) {
-    this.movieService.postMovie(peli)
-      .subscribe(res => {
-//this.resetForm(form);
-        console.log(res);
-        M.toast({html: 'Save Successfully'}); // LLamada desde Toast de Materialize
-        this.getMovies(); // Para actualizar la lista de películas después de añadir
-      }); //escuchamos la respuesta del servidor y la utilizamos
+    if (peli._id) {
+      this.movieService.putMovie(peli)
+        .subscribe(res => {
+          this.resetForm(form);
+          M.toast({html: 'Updated Successfully'}); // LLamada desde Toast de Materialize
+          this.getMovies(); // Para actualizar la lista de películas después de añadir
+        })
+    } else {
+      console.log('Mi peli', peli)
+      this.movieService.postMovie(peli)
+        .subscribe(res => {
+          console.log(res);
+          M.toast({html: 'Save Successfully'}); // LLamada desde Toast de Materialize
+          // Para actualizar la lista de películas después de añadir
+        }); //escuchamos la respuesta del servidor y la utilizamos
+    }
   }
   getMovies() {
     this.movieService.getMovies()
@@ -77,5 +90,16 @@ export class MoviesComponent implements OnInit {
         this.movieService.movies = res as Movie[];
         console.log(res);
       });
+  }
+  deleteMovie(_id: string) {
+    if(confirm('Seguro de borrar')) {
+      this.movieService.deleteMovie(_id)
+        .subscribe(res => {
+          this.getMovies();
+          M.toast({html: 'Deleted OK'});
+        });
+    }}
+  editMovie(employee: Employee) {
+    this.employeeService.selectedEmployee = employee;
   }
 }

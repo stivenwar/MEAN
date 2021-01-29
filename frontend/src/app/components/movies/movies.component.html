@@ -11,27 +11,28 @@
     <div class="col s6"></div>
   </div>
 </div>
-<form #movieForm="ngForm" (ngSubmit)="addMovie(movieService .selectedMovie,movieForm)">
+<form #movieForm="ngForm" (ngSubmit)="addMovie(movieService.selectedMovie,movieForm)">
+  <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="movieService.selectedMovie._id">
   <div class="row">
     <div class="input-field col s12" >
       <input type="text" name="title" #title="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .title"
+             [(ngModel)] ="movieService.selectedMovie.title"
              placeholder ="Enter title" />
       <input type="number" name="year" #title="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .year"
+             [(ngModel)] ="movieService.selectedMovie.year"
              placeholder ="Enter year" />
       <input type="text" name="rated" #title="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .rated"
+             [(ngModel)] ="movieService.selectedMovie.rated"
              placeholder ="Enter rated" />
       <input type="number" name="runtime" #title="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .runtime"
+             [(ngModel)] ="movieService.selectedMovie.runtime"
              placeholder ="Enter runtime" />
       <div class="row">
         <div class="col m10">
           <label>
           <input type="text" name="country" #country="ngModel"
           [(ngModel)] ="myCountry" placeholder ="Enter country" />
-          <p><b>Countries: </b><span *ngFor="let c of movieService .selectedMovie .countries">{{c}}, </span></p>
+          <p><b>Countries: </b><span *ngFor="let c of movieService.selectedMovie.countries">{{c}}, </span></p>
 
         </label>
       </div>
@@ -46,7 +47,7 @@
           [(ngModel)] ="myGenre"
           placeholder ="Enter genre" />
 
-          <p><b>Genres: </b><span *ngFor="let g of movieService .selectedMovie .genres">{{g}}, </span></p>
+          <p><b>Genres: </b><span *ngFor="let g of movieService.selectedMovie.genres">{{g}}, </span></p>
 
         </label>
       </div>
@@ -55,7 +56,7 @@
       </div>
     </div>
       <input type="text" name="director" #director="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .director"
+             [(ngModel)] ="movieService.selectedMovie.director"
              placeholder ="Enter director" />
       <div class="row">
         <div class="col m10">
@@ -64,7 +65,7 @@
           [(ngModel)] ="myWriter"
           placeholder ="Enter writer" />
 
-          <p><b>Writers: </b><span *ngFor="let c of movieService .selectedMovie .writers">{{c}}, </span></p>
+          <p><b>Writers: </b><span *ngFor="let c of movieService.selectedMovie.writers">{{c}}, </span></p>
 
         </label>
       </div>
@@ -79,7 +80,7 @@
           [(ngModel)] ="myActor"
           placeholder ="Enter actor" />
 
-          <p><b>Actors: </b><span *ngFor="let g of movieService .selectedMovie .actors">{{g}}, </span></p>
+          <p><b>Actors: </b><span *ngFor="let g of movieService.selectedMovie.actors">{{g}}, </span></p>
 
         </label>
       </div>
@@ -88,70 +89,70 @@
       </div>
     </div>
       <input type="text" name="plot" #plot="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .plot"
+             [(ngModel)] ="movieService.selectedMovie.plot"
              placeholder ="Enter plot" />
       <input type="text" name="poster" #poster="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .poster"
+             [(ngModel)] ="movieService.selectedMovie.poster"
              placeholder ="Enter poster" />
       <fieldset>
         <legend>IMDB</legend>
         <input type="text" name="id" #id="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .imdb.id"
+               [(ngModel)] ="movieService.selectedMovie.imdb.id"
                placeholder ="Enter IMDB id" />
         <input type="number" name="rating" #rating="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .imdb.rating"
+               [(ngModel)] ="movieService.selectedMovie.imdb.rating"
                placeholder ="Enter IMDB rating" />
         <input type="number" name="votes" #votes="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .imdb.votes"
+               [(ngModel)] ="movieService.selectedMovie.imdb.votes"
                placeholder ="Enter IMDB votes" />
       </fieldset>
       <fieldset>
         <legend>Tomato</legend>
         <input type="number" name="meter" #meter="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.meter"
+               [(ngModel)] ="movieService.selectedMovie.tomato.meter"
                placeholder ="Enter Tomato meter" />
         <input type="text" name="image" #image="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.image"
+               [(ngModel)] ="movieService.selectedMovie.tomato.image"
                placeholder ="Enter Tomato image" />
         <input type="number" name="rating" #rating="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.rating"
+               [(ngModel)] ="movieService.selectedMovie.tomato.rating"
                placeholder ="Enter Tomato rating" />
         <input type="number" name="reviews" #reviews="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.reviews"
+               [(ngModel)] ="movieService.selectedMovie.tomato.reviews"
                placeholder ="Enter Tomato reviews" />
         <input type="number" name="fresh" #fresh="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.fresh"
+               [(ngModel)] ="movieService.selectedMovie.tomato.fresh"
                placeholder ="Enter Tomato fresh" />
         <input type="text" name="consensus" #consensus="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.consensus"
+               [(ngModel)] ="movieService.selectedMovie.tomato.consensus"
                placeholder ="Enter Tomato consensus" />
         <input type="number" name="userMeter" #userMeter="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.userMeter"
+               [(ngModel)] ="movieService.selectedMovie.tomato.userMeter"
                placeholder ="Enter Tomato userMeter" />
         <input type="number" name="userRating" #userRating="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.userRating"
+               [(ngModel)] ="movieService.selectedMovie.tomato.userRating"
                placeholder ="Enter Tomato userRating" />
         <input type="number" name="userReviews" #userReviews ="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .tomato.userReviews "
+               [(ngModel)] ="movieService.selectedMovie.tomato.userReviews "
                placeholder ="Enter Tomato userReviews" />
       </fieldset>
       <input type="number" name="metacritic" #metacritic="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .metacritic"
+             [(ngModel)] ="movieService.selectedMovie.metacritic"
              placeholder ="Enter Metacritic" />
       <fieldset>
         <legend>Awards</legend>
         <input type="number" name="wins" #wins="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .awards.wins"
+               [(ngModel)] ="movieService.selectedMovie.awards.wins"
                placeholder ="Enter Awards wins" />
         <input type="number" name="nominations" #nominations ="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .awards.nominations "
+               [(ngModel)] ="movieService.selectedMovie.awards.nominations "
                placeholder ="Enter Awards nominations" />
         <input type="text" name="text" #text="ngModel"
-               [(ngModel)] ="movieService .selectedMovie .awards.text"
+               [(ngModel)] ="movieService.selectedMovie.awards.text"
                placeholder ="Enter Awards text" />
       </fieldset>
       <input type="text" name="type" #type="ngModel"
-             [(ngModel)] ="movieService .selectedMovie .type"
+             [(ngModel)] ="movieService.selectedMovie.type"
              placeholder ="Enter type" />
     </div>
   </div>
@@ -166,7 +167,7 @@
   <h2 class="center blue-text">Movies</h2>
   <ul>
     <li *ngFor="let movie of movieService.movies">
-      <h5>{{ movie.title }}
+      <h5>{{movie.title}}
         <a class="cursor" (click)="editMovie(movie)">
           <i class="material-icons">edit</i>
         </a>
